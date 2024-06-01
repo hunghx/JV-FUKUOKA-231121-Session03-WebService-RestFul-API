@@ -9,8 +9,13 @@ import java.util.List;
 
 public interface IProductService {
     Page<Product> findAll(Pageable pageable);
+    List<Product> findAll();
     Product findById(Integer id);
-    void save(ProductCreateRequest request);
-    void save(ProductCreateRequest request,Integer id);
+    void save(ProductCreateRequest request); // web app
+    void save(ProductCreateRequest request,Integer id);  // webapp
     void deleteById(Integer id);
+    Product saveJson(Product request);
+    Product saveFormData(ProductCreateRequest request);
+    Product updateFormData(ProductCreateRequest request, Integer id);
+    Product updateFormDataPath(ProductCreateRequest request, Integer id);
 }
