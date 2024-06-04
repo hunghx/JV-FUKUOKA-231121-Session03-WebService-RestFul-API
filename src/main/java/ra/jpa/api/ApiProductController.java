@@ -15,6 +15,7 @@ import java.util.List;
 // domain : https://www.rikkei.vn
 @RequestMapping("/api.rikkei.vn/v1/products") // https://localhost:8080/api.rikkei.vn/v1/products
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ApiProductController {
     private final IProductService productService;
     // lấy về danh sách sản phẩm

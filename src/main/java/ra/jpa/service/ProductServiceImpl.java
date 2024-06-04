@@ -60,7 +60,7 @@ public class ProductServiceImpl implements IProductService {
                 .createdAt(new Date())
                 .isHidden(false)
                 .build();
-        if (request.getFile().getSize() != 0) {
+        if  (request.getFile()!=null && request.getFile().getSize() != 0) {
             String fileName = request.getFile().getOriginalFilename();
             try {
                 FileCopyUtils.copy(request.getFile().getBytes(), new File(uploadPath + File.separator + fileName));
@@ -68,7 +68,7 @@ public class ProductServiceImpl implements IProductService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            product.setImageUrl(fileName);
+            product.setImageUrl("http://localhost:8080/uploads/"+fileName);
         }
         //luwuu lại
         return productRepository.save(product);
@@ -98,7 +98,7 @@ public class ProductServiceImpl implements IProductService {
         product.setPrice(request.getPrice());
         product.setStock(request.getStock());
         product.setDescription(request.getDescription());
-        if (request.getFile().getSize() != 0) {
+        if (request.getFile()!=null && request.getFile().getSize() != 0) {
             String fileName = request.getFile().getOriginalFilename();
             try {
                 FileCopyUtils.copy(request.getFile().getBytes(), new File(uploadPath + File.separator + fileName));
@@ -106,7 +106,7 @@ public class ProductServiceImpl implements IProductService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            product.setImageUrl(fileName);
+            product.setImageUrl("http://localhost:8080/uploads/"+fileName);
         }
         //luwuu lại
         return productRepository.save(product);
@@ -142,7 +142,7 @@ public class ProductServiceImpl implements IProductService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            product.setImageUrl(fileName);
+            product.setImageUrl("http://localhost:8080/uploads/"+fileName);
         }
         //luwuu lại
         return productRepository.save(product);
@@ -165,7 +165,7 @@ public class ProductServiceImpl implements IProductService {
                 .createdAt(new Date())
                 .isHidden(false)
                 .build();
-        if (request.getFile().getSize() != 0) {
+        if (request.getFile()!=null && request.getFile().getSize() != 0) {
             String fileName = request.getFile().getOriginalFilename();
             try {
                 FileCopyUtils.copy(request.getFile().getBytes(), new File(uploadPath + File.separator + fileName));
@@ -173,7 +173,7 @@ public class ProductServiceImpl implements IProductService {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            product.setImageUrl(fileName);
+            product.setImageUrl("http://localhost:8080/uploads/"+fileName);
         }
         //luwuu lại
         productRepository.save(product);
