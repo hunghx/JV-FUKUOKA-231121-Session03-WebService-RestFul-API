@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import ra.jpa.dto.request.ProductCreateRequest;
+import ra.jpa.dto.response.ProductInforUser;
 import ra.jpa.entity.Product;
 import ra.jpa.repository.ProductRepository;
 
@@ -77,6 +78,11 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public List<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public List<ProductInforUser> findAllForUser() {
+        return  productRepository.findAll().stream().map(ProductInforUser::map).toList();
     }
 
     @Override

@@ -21,11 +21,14 @@ import ra.jpa.security.principle.UserDetailsServiceCustom;
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
-//    @Bean
-//    public JwtEntryPoint jwtEntryPoint() {
-//        return new JwtEntryPoint();
-//    } // xu li loi lien quan toi authentication
-
+    @Bean
+    public AuthenticationException authenticationException(){
+        return new AuthenticationException();
+    }
+    @Bean
+    public AccessDeniedException accessDeniedException(){
+        return new AccessDeniedException();
+    }
 //    ;
 //    @Autowired
 //    private JwtProvider jwtProvider; // bo cung cap 3 chuc nang cua jwt
@@ -60,6 +63,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { //bộ lọc quyên
         http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // phi trạng thai
+                .exceptionHandling(handler->{
+                    handler
+                            .authenticationEntryPoint(authenticationException()) // người dùng chưa xác thực
+                            .accessDeniedHandler(accessDeniedException()); // ko có quyền truy cập
+                })
                 .authorizeHttpRequests(
                             auth -> auth.requestMatchers("/api.com/v1/auth/**").permitAll() // công khai , ko cần xác thực
                                 .requestMatchers("/api.com/v1/admin/**").hasAuthority("ROLE_ADMIN") // có quyền admin

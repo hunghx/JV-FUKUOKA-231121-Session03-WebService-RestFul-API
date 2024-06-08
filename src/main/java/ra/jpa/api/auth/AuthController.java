@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ra.jpa.dto.request.FormLogin;
+import ra.jpa.dto.request.FormRegister;
 import ra.jpa.service.AuthenticationService;
 
 import java.util.HashMap;
@@ -26,4 +27,16 @@ public class AuthController {
         map.put("status", HttpStatus.OK);
         return new ResponseEntity<>(map,HttpStatus.OK);
     }
+    @PostMapping("/sign-up")
+    public ResponseEntity<?> doRegister(@RequestBody FormRegister request){
+        // kiểm tra thông tin có hợp lệ không
+
+        authenticationService.register(request);
+        Map<String , Object> map = new HashMap<>();
+        map.put("message","Register successfully");
+        map.put("code",201);
+        map.put("status", HttpStatus.CREATED);
+        return new ResponseEntity<>(map,HttpStatus.CREATED);
+    }
+
 }
