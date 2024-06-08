@@ -73,6 +73,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api.com/v1/admin/**").hasAuthority("ROLE_ADMIN") // có quyền admin
 //                                .requestMatchers("/api.com/v1/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/api.com/v1/user/**").hasAuthority("ROLE_USER")
+                                .requestMatchers("/api.com/v1/authenticated/**").authenticated() // bắt buộc phải xác thực
                                 .requestMatchers("/api.com/v1/manager/**").hasAuthority("ROLE_MANAGER")
                                 .requestMatchers("/api.com/v1/user-manager/**").hasAnyAuthority("ROLE_USER", "ROLE_MANAGER")
                                 .anyRequest().authenticated() // bắt buộc phải xác thực
