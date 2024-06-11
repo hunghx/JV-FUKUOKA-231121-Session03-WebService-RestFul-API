@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import ra.jpa.validation.UsernameUnique;
 
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @Data
 public class FormRegister {
     @NotBlank(message = "khong duoc de trong") // để nguyên thì message trả về là mặc định
+    @UsernameUnique
     private String username;
     @NotBlank
     @Email

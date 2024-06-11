@@ -90,5 +90,8 @@ public class AuthenticationService {
         user.setRoleSet(setRoles);
         userRepository.save(user);
     }
+    public boolean existsByUsername(String username){
+        return userRepository.existsByUsername(username);
+    };
 
 }
