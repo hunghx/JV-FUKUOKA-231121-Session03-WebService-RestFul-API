@@ -14,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api.com/v1/auth")
+@CrossOrigin("*")
 public class AuthController {
     // đăng nhập đăng kí : ko cần quyền
     // đăng nhập : trả về 1 Response : (token, id, fullname, typeToken)
