@@ -1,5 +1,6 @@
 package ra.jpa.api.auth;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class AuthController {
         return new ResponseEntity<>(map,HttpStatus.OK);
     }
     @PostMapping("/sign-up")
-    public ResponseEntity<?> doRegister(@RequestBody FormRegister request){
+    public ResponseEntity<?> doRegister(@Valid @RequestBody FormRegister request){ // nếu có lỗi sinh ra thì ném ra ngoại lệ
         // kiểm tra thông tin có hợp lệ không
 
         authenticationService.register(request);

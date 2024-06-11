@@ -5,11 +5,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import ra.jpa.dto.request.ProductCreateRequest;
 import ra.jpa.entity.Product;
 
 import ra.jpa.service.IProductService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/product")
@@ -30,6 +35,7 @@ public class ProductController {
 //    }
     @GetMapping("/edit")
     public  String edit (@RequestParam Integer id , Model model){
+
         Product product  = productService.findById(id);
         ProductCreateRequest request = ProductCreateRequest.builder()
                 .name(product.getName())
@@ -50,6 +56,9 @@ public class ProductController {
     @PostMapping("/add")
     public  String doAdd (@ModelAttribute("product") ProductCreateRequest request){
         productService.save(request);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.isEmpty();
         return "redirect:/product/list";
     }
     @PostMapping("/update")
